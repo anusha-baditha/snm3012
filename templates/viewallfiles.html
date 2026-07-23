@@ -1,0 +1,58 @@
+{% extends 'dashboard.html' %}
+    {% block title %}<title>View All Files</title>{% endblock %}
+
+    {% block addcss %}
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='viewallnotes.css') }}">
+    {% endblock %}
+{% block content %}
+<div class="container mt-5">
+
+    <div class="notes-card">
+
+        <div class="notes-header">
+            <h2><i class="bi bi-journal-text"></i> View All Files</h2>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>File ID</th>
+                        <th>Filename</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for i in allfiles_data %}
+                    <tr>
+                        <td>{{ i[0] }}</td>
+                        <td>{{ i[1] }}</td>
+                        <td>{{ i[2] }}</td>
+                        <td><a href="{{url_for('viewfile',fileid=i[0])}}">View</a></td>
+                        <td><a href="{{url_for('downloadfile',fileid=i[0])}}">Download</a></td>
+                        <td><a href="{{url_for('deletefiles',fileid=i[0])}}">Delete</a></td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">
+                            No files found.
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+
+ {% endblock %}
