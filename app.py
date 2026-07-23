@@ -400,4 +400,4 @@ def newpassword(data):
         return jsonify({"status":"failed","message":f'{str(e)}'}),500
 
 if __name__=='__main__':
-    app.run(debug=True,use_reloader=True)
+    app.run()
